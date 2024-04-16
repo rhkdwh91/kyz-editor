@@ -103,7 +103,6 @@ export default function ToolbarPlugin() {
         className="toolbar-item spaced"
         aria-label="Undo">
         <Undo />
-        <i className="format undo" />
       </button>
       <button
         disabled={!canRedo}
@@ -113,7 +112,6 @@ export default function ToolbarPlugin() {
         className="toolbar-item"
         aria-label="Redo">
         <Redo />
-        <i className="format redo" />
       </button>
       <Divider />
       <button
@@ -123,7 +121,6 @@ export default function ToolbarPlugin() {
         className={'toolbar-item spaced ' + (isBold ? 'active' : '')}
         aria-label="Format Bold">
         <TypeBold />
-        <i className="format bold" />
       </button>
       <button
         onClick={() => {
@@ -132,7 +129,6 @@ export default function ToolbarPlugin() {
         className={'toolbar-item spaced ' + (isItalic ? 'active' : '')}
         aria-label="Format Italics">
         <TypeItalic />
-        <i className="format italic" />
       </button>
       <button
         onClick={() => {
@@ -141,7 +137,6 @@ export default function ToolbarPlugin() {
         className={'toolbar-item spaced ' + (isUnderline ? 'active' : '')}
         aria-label="Format Underline">
         <TypeUnderline />
-        <i className="format underline" />
       </button>
       <button
         onClick={() => {
@@ -150,7 +145,6 @@ export default function ToolbarPlugin() {
         className={'toolbar-item spaced ' + (isStrikethrough ? 'active' : '')}
         aria-label="Format Strikethrough">
         <TypeStrikethrough />
-        <i className="format strikethrough" />
       </button>
       <Divider />
       <button
@@ -160,7 +154,6 @@ export default function ToolbarPlugin() {
         className="toolbar-item spaced"
         aria-label="Left Align">
         <TextLeft />
-        <i className="format left-align" />
       </button>
       <button
         onClick={() => {
@@ -169,7 +162,6 @@ export default function ToolbarPlugin() {
         className="toolbar-item spaced"
         aria-label="Center Align">
         <TextCenter />
-        <i className="format center-align" />
       </button>
       <button
         onClick={() => {
@@ -178,7 +170,6 @@ export default function ToolbarPlugin() {
         className="toolbar-item spaced"
         aria-label="Right Align">
         <TextRight />
-        <i className="format right-align" />
       </button>
       <button
         onClick={() => {
@@ -187,8 +178,7 @@ export default function ToolbarPlugin() {
         className="toolbar-item"
         aria-label="Justify Align">
         <TextJustify />
-        <i className="format justify-align" />
-      </button>{' '}
+      </button>
     </div>
   );
 }

@@ -2,7 +2,7 @@ A library editor for simple react based on Lexical.js.
 
 For example...
 
-```
+```jsx
 function Placeholder() {
   return <div className="editor-placeholder">Enter some rich text...</div>;
 }

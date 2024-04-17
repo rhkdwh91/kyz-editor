@@ -2,7 +2,7 @@ A library editor for simple react based on Lexical.js.
 
 For example...
 
-₩₩₩
+```
 function Placeholder() {
   return <div className="editor-placeholder">Enter some rich text...</div>;
 }
@@ -21,6 +21,6 @@ const App = () => {
     </div>
   );
 };
-₩₩₩
+```
 
 Try to use it

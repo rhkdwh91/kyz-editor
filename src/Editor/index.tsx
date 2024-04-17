@@ -18,9 +18,22 @@ import ToolbarPlugin from '../plugins/ToolbarPlugin';
 import TreeViewPlugin from '../plugins/TreeViewPlugin';
 
 import "./styles.css";
+import { EditorState } from 'lexical';
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { useEffect } from 'react';
 
-function Placeholder() {
-  return <div className="editor-placeholder">Enter some rich text...</div>;
+interface MyOnChangePluginProps {
+  onChange: (editorState: EditorState) => void
+}
+
+function MyOnChangePlugin({ onChange }: MyOnChangePluginProps) {
+  const [editor] = useLexicalComposerContext();
+  useEffect(() => {
+    return editor.registerUpdateListener(({editorState}) => {
+      onChange(editorState);
+    });
+  }, [editor, onChange]);
+  return null;
 }
 
 const editorConfig = {
@@ -34,7 +47,12 @@ const editorConfig = {
   theme: ExampleTheme,
 };
 
-export default function App() {
+interface AppProps {
+  placeholder: JSX.Element;
+  onChange: (editorState: EditorState) => void
+}
+
+export default function App({ placeholder, onChange }: AppProps) {
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div className="editor-container">
@@ -42,12 +60,13 @@ export default function App() {
         <div className="editor-inner">
           <RichTextPlugin
             contentEditable={<ContentEditable className="editor-input" />}
-            placeholder={<Placeholder />}
+            placeholder={placeholder}
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />
           <AutoFocusPlugin />
           <TreeViewPlugin />
+          <MyOnChangePlugin onChange={onChange} />
         </div>
       </div>
     </LexicalComposer>

@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Editor } from '../.';
+import { Editor, initialState } from '../.';
 import { EditorState } from 'lexical';
 
 function Placeholder() {
@@ -9,7 +9,7 @@ function Placeholder() {
 }
 
 const App = () => {
-  const [editorState, setEditorState] = React.useState<null | string>(null);
+  const [editorState, setEditorState] = React.useState<string>(initialState);
   function onChange(editorState: EditorState) {
     console.log(JSON.stringify(editorState.toJSON()))
     // Call toJSON on the EditorState object, which produces a serialization safe string
@@ -17,10 +17,9 @@ const App = () => {
     // However, we still have a JavaScript object, so we need to convert it to an actual string with JSON.stringify
     setEditorState(JSON.stringify(editorStateJSON));
   }
-  console.log(editorState)
   return (
     <div>
-      <Editor placeholder={<Placeholder />} onChange={onChange} initialEditorState={editorState ? JSON.parse(editorState) : null} />
+      <Editor placeholder={<Placeholder />} onChange={onChange} initialEditorState={editorState} />
     </div>
   );
 };

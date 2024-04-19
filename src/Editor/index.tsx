@@ -40,9 +40,10 @@ function MyOnChangePlugin({ onChange }: MyOnChangePluginProps) {
 
 interface AppProps {
   placeholder: JSX.Element;
-  initialEditorState: any;
+  initialEditorState: string | null;
   onChange: (editorState: EditorState) => void
 }
+
 
 export default function App({ placeholder, initialEditorState, onChange }: AppProps) {
   const editorConfig = {
@@ -54,7 +55,7 @@ export default function App({ placeholder, initialEditorState, onChange }: AppPr
     },
     // The editor theme
     theme: ExampleTheme,
-    editorState: initialEditorState ?? null
+    editorState: initialEditorState
   };
 
   return (

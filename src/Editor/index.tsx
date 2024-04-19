@@ -36,23 +36,27 @@ function MyOnChangePlugin({ onChange }: MyOnChangePluginProps) {
   return null;
 }
 
-const editorConfig = {
-  namespace: 'React.js Demo',
-  nodes: [],
-  // Handling of errors during update
-  onError(error: Error) {
-    throw error;
-  },
-  // The editor theme
-  theme: ExampleTheme,
-};
+
 
 interface AppProps {
   placeholder: JSX.Element;
+  initialEditorState: any;
   onChange: (editorState: EditorState) => void
 }
 
-export default function App({ placeholder, onChange }: AppProps) {
+export default function App({ placeholder, initialEditorState, onChange }: AppProps) {
+  const editorConfig = {
+    namespace: 'React.js Demo',
+    nodes: [],
+    // Handling of errors during update
+    onError(error: Error) {
+      throw error;
+    },
+    // The editor theme
+    theme: ExampleTheme,
+    editorState: initialEditorState ?? null
+  };
+
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div className="editor-container">

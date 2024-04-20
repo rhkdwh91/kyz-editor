@@ -3,8 +3,7 @@ A library editor for simple react based on Lexical.js.
 For example...
 
 ```jsx
-import { Editor, initialState } from '../.';
-import { EditorState } from 'lexical';
+import { Editor, EditorState, initialState } from 'kyz-editor';
 
 function Placeholder() {
   return <div className="editor-placeholder">Enter some rich text...</div>;

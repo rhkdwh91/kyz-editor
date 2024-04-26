@@ -18,7 +18,7 @@
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "playground": "cd example && parcel index.html"
+    "playground": "cd example && npm run start"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -63,6 +63,7 @@
   "dependencies": {
     "@lexical/react": "^0.14.3",
     "lexical": "^0.14.3",
+    "postcss": "^8.4.38",
     "rollup-plugin-svg": "^2.0.0"
   }
 }

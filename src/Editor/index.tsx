@@ -15,7 +15,6 @@ import * as React from 'react';
 
 import ExampleTheme from './ExampleTheme';
 import ToolbarPlugin from '../plugins/ToolbarPlugin';
-import TreeViewPlugin from '../plugins/TreeViewPlugin';
 
 import "./styles.css";
 import { EditorState } from 'lexical';
@@ -41,27 +40,27 @@ function MyOnChangePlugin({ onChange }: MyOnChangePluginProps) {
 interface AppProps {
   placeholder: JSX.Element;
   initialEditorState: string | null;
+  editable: boolean;
   onChange: (editorState: EditorState) => void
 }
 
 
-export default function App({ placeholder, initialEditorState, onChange }: AppProps) {
-  const editorConfig = {
-    namespace: 'React.js Demo',
-    nodes: [],
-    // Handling of errors during update
-    onError(error: Error) {
-      throw error;
-    },
-    // The editor theme
-    theme: ExampleTheme,
-    editorState: initialEditorState
-  };
-
+export default function App({ placeholder, initialEditorState, editable = true, onChange }: AppProps) {
   return (
-    <LexicalComposer initialConfig={editorConfig}>
+    <LexicalComposer initialConfig={{
+      namespace: 'React.js Demo',
+      nodes: [],
+      // Handling of errors during update
+      onError(error: Error) {
+        throw error;
+      },
+      // The editor theme
+      theme: ExampleTheme,
+      editorState: initialEditorState,
+      editable,
+    }}>
       <div className="editor-container">
-        <ToolbarPlugin />
+        {editable && <ToolbarPlugin />}
         <div className="editor-inner">
           <RichTextPlugin
             contentEditable={<ContentEditable className="editor-input" />}
@@ -69,8 +68,7 @@ export default function App({ placeholder, initialEditorState, onChange }: AppPr
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />
-          <AutoFocusPlugin />
-          <TreeViewPlugin />
+          {editable && <AutoFocusPlugin />}
           <MyOnChangePlugin onChange={onChange} />
         </div>
       </div>

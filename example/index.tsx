@@ -18,7 +18,7 @@ const App = () => {
   }
   return (
     <div>
-      <Editor placeholder={<Placeholder />} onChange={onChange} initialEditorState={editorState} />
+      <Editor placeholder={<Placeholder />} onChange={onChange} initialEditorState={editorState} editable={true} />
     </div>
   );
 };

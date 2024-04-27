@@ -14,7 +14,7 @@ import {RichTextPlugin} from '@lexical/react/LexicalRichTextPlugin';
 import * as React from 'react';
 
 import ExampleTheme from './ExampleTheme';
-import ToolbarPlugin from '../plugins/ToolbarPlugin';
+import Index from '../plugins/ToolbarPlugin';
 
 import "./styles.css";
 import { EditorState } from 'lexical';
@@ -22,14 +22,16 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import { useEffect } from 'react';
 
 interface MyOnChangePluginProps {
-  onChange: (editorState: EditorState) => void
+  onChange?: (editorState: EditorState) => void
 }
 
 function MyOnChangePlugin({ onChange }: MyOnChangePluginProps) {
   const [editor] = useLexicalComposerContext();
   useEffect(() => {
     return editor.registerUpdateListener(({editorState}) => {
-      onChange(editorState);
+        if (onChange) {
+            onChange(editorState);
+        }
     });
   }, [editor, onChange]);
   return null;
@@ -38,10 +40,10 @@ function MyOnChangePlugin({ onChange }: MyOnChangePluginProps) {
 
 
 interface AppProps {
-  placeholder: JSX.Element;
+  placeholder?: JSX.Element;
   initialEditorState: string | null;
-  editable: boolean;
-  onChange: (editorState: EditorState) => void
+  editable?: boolean;
+  onChange?: (editorState: EditorState) => void
 }
 
 
@@ -60,11 +62,11 @@ export default function App({ placeholder, initialEditorState, editable = true, 
       editable,
     }}>
       <div className="editor-container">
-        {editable && <ToolbarPlugin />}
+        {editable && <Index />}
         <div className="editor-inner">
           <RichTextPlugin
             contentEditable={<ContentEditable className="editor-input" />}
-            placeholder={placeholder}
+            placeholder={placeholder ?? <></>}
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />

@@ -124,6 +124,7 @@ export default function FontSize({
                     if (selection !== null) {
                         $patchStyleText(selection, {
                             'font-size': newFontSize || getNextFontSize,
+                            'line-height': "1.2"
                         });
                     }
                 }

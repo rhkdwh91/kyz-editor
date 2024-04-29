@@ -156,9 +156,6 @@ function FontDropDown({
             disabled={disabled}
             buttonClassName={'toolbar-item ' + style}
             buttonLabel={value}
-            buttonIconClassName={
-                style === 'font-family' ? 'icon block-type font-family' : ''
-            }
             buttonAriaLabel={buttonAriaLabel}>
             {(style === 'font-family' ? FONT_FAMILY_OPTIONS : FONT_SIZE_OPTIONS).map(
                 ([option, text]) => (
@@ -510,6 +507,7 @@ export default function ToolbarPlugin(): JSX.Element {
                         onChange={onBgColorSelect}
                         title="bg color"
                     />
+                    <Divider />
                 </>
             )}
         </div>

@@ -61,7 +61,6 @@
     tab-size: 1;
     outline: 0;
     padding: 15px 10px;
-    caret-color: #444;
   }
   
   .editor-placeholder {
@@ -336,7 +335,6 @@
   
   .toolbar button.toolbar-item i.format {
     background-size: contain;
-    display: inline-block;
     height: 18px;
     width: 18px;
     margin-top: 2px;
@@ -370,12 +368,10 @@
   .toolbar .toolbar-item .text {
     display: flex;
     line-height: 20px;
-    width: 200px;
     vertical-align: middle;
     font-size: 14px;
     color: #777;
     text-overflow: ellipsis;
-    width: 70px;
     overflow: hidden;
     height: 20px;
     text-align: left;
@@ -390,44 +386,18 @@
     line-height: 16px;
     background-size: contain;
   }
-  
-  i.undo {
-    background-image: url('../icons/arrow-counterclockwise.svg');
+
+  .dropdown-wrapper {
+    position: relative;
+    display: inline-block;
   }
   
-  i.redo {
-    background-image: url('../icons/arrow-clockwise.svg');
-  }
-  
-  i.bold {
-    background-image: url('../icons/type-bold.svg');
-  }
-  
-  i.italic {
-    background-image: url('../icons/type-italic.svg');
-  }
-  
-  i.underline {
-    background-image: url('../icons/type-underline.svg');
-  }
-  
-  i.strikethrough {
-    background-image: url('../icons/type-strikethrough.svg');
-  }
-  
-  i.left-align {
-    background-image: url('../icons/text-left.svg');
-  }
-  
-  i.center-align {
-    background-image: url('../icons/text-center.svg');
-  }
-  
-  i.right-align {
-    background-image: url('../icons/text-right.svg');
-  }
-  
-  i.justify-align {
-    background-image: url('../icons/justify.svg');
-  }
-  
+ .dropdown {
+   position: absolute;
+   top: 40px;
+   left: 0;
+   z-index: 2;
+   background-color: #ffff;
+   border: 1px solid #eee;
+   border-radius: 8px;
+ }

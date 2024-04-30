@@ -22,7 +22,7 @@ export default function ImageToolbar({
   };
 
   return (
-    <div className="toolbar">
+    <div>
       {insertImage && (
         <button
           onClick={() => insertImage(setImage)}

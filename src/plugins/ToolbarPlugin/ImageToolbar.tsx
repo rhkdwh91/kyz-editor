@@ -9,6 +9,10 @@ export function FillURL() {
   return srcfile ?? '';
 }
 
+function Divider() {
+  return <div className="divider" />;
+}
+
 interface ImageToolbarProps {
   insertImage?: (setImage: (payload: InsertImagePayload) => void) => void;
 }
@@ -22,7 +26,7 @@ export default function ImageToolbar({
   };
 
   return (
-    <div>
+    <>
       {insertImage && (
         <button
           onClick={() => insertImage(setImage)}
@@ -31,6 +35,7 @@ export default function ImageToolbar({
           <span className="text">Insert Image</span>
         </button>
       )}
+      <Divider />
       <button
         onClick={() =>
           setImage({
@@ -42,6 +47,6 @@ export default function ImageToolbar({
       >
         <span className="text">Insert from URL</span>
       </button>
-    </div>
+    </>
   );
 }

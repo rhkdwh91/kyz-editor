@@ -113,7 +113,7 @@ function dropDownActiveClass(active: boolean) {
   }
 }
 
-function Divider(): JSX.Element {
+function Divider() {
   return <div className="divider" />;
 }
 

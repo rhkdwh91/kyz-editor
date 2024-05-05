@@ -74,7 +74,9 @@ export default function App({
     >
       <div className="editor-container">
         {editable && <ToolbarPlugin insertImage={insertImage} />}
-        <div className="editor-inner">
+        <div
+          className={editable ? 'editor-inner viewer-inner' : 'viewer-inner'}
+        >
           <RichTextPlugin
             contentEditable={<ContentEditable className="editor-input" />}
             placeholder={placeholder ?? <></>}

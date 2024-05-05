@@ -28,7 +28,7 @@ const App = () => {
 
 Read mode example: 
 ```jsx
-<Editor placeholder={<Placeholder />} onChange={onChange} initialEditorState={editorState} editable={false} />
+<Editor editable={false} />
 ```
 
 Try to use it

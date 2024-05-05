@@ -46,10 +46,13 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
-  
-  .editor-inner {
+
+  .viewer-inner {
     background: #fff;
     position: relative;
+  }
+
+  .editor-inner {
     max-height: 500px;
     overflow-y: auto;
   }

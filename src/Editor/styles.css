@@ -50,6 +50,8 @@
   .editor-inner {
     background: #fff;
     position: relative;
+    max-height: 500px;
+    overflow-y: auto;
   }
   
   .editor-input {

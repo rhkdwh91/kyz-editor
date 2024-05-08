@@ -1,7 +1,8 @@
-import 'react-app-polyfill/ie11';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { Editor, initialState, EditorState } from '../.';
+'use client';
+
+import React from 'react';
+
+import { Editor, initialState, EditorState } from '../../src';
 
 function Placeholder() {
   return <div className="editor-placeholder">Enter some rich text...</div>;
@@ -28,4 +29,4 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default App;

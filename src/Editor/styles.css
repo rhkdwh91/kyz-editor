@@ -406,3 +406,29 @@
    border: 1px solid #eee;
    border-radius: 8px;
  }
+
+.code {
+  background-color: #f7fafb;
+  font-family: Menlo, Consolas, Monaco, monospace;
+  display: block;
+  padding: 8px 8px 8px 52px;
+  line-height: 1.6;
+  font-size: 14px;
+  margin: 8px 0;
+  tab-size: 2;
+  overflow-x: auto;
+  position: relative;
+
+  &::before {
+    content: attr(data-gutter);
+    color: #999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #d9dddf;
+    padding: 8px;
+    min-width: 32px;
+    height: 100%;
+    text-align: right;
+  }
+}

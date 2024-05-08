@@ -7,4 +7,4 @@ const initialState =
 
 type setImage = (payload: Readonly<ImagePayload>) => void;
 
-export { Editor, EditorState, initialState, type setImage };
+export { Editor, EditorState, initialState, setImage };

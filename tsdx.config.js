@@ -1,5 +1,6 @@
 const postcss = require('rollup-plugin-postcss');
 const svg = require('rollup-plugin-svg');
+const replace = require('@rollup/plugin-replace');
 
 module.exports = {
   rollup(config, options) {
@@ -11,6 +12,9 @@ module.exports = {
       }),
       postcss({
         plugins: [],
+      }),
+      replace({
+        preventAssignment: true,
       })
     );
     config.inlineDynamicImports = true;

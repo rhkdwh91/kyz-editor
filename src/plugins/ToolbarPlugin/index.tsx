@@ -519,7 +519,7 @@ export default function ToolbarPlugin({ insertImage }: ToolbarProps) {
     (e: any) => {
       editor.update(() => {
         if (selectedElementKey !== null) {
-          const node = $getNodeByKey(selectedElementKey);
+          const node: any = $getNodeByKey(selectedElementKey as any);
           if ($isCodeNode(node)) {
             node.setLanguage(e.target.value);
           }

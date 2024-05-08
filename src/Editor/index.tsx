@@ -24,6 +24,18 @@ import { ImageNode } from '../nodes/ImageNode';
 import ImagesPlugin, {
   InsertImagePayload,
 } from '../plugins/ToolbarPlugin/ImagePlugin';
+import CodeHighlightPlugin from '../plugins/CodeHighlightPlugin';
+import { ListPlugin } from '@lexical/react/LexicalListPlugin';
+import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
+import { AutoLinkPlugin } from '@lexical/react/LexicalAutoLinkPlugin';
+import ListMaxIndentLevelPlugin from '../plugins/ListMaxIndentLevelPlugin';
+import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPlugin';
+import { TRANSFORMERS } from '@lexical/markdown';
+import { HeadingNode, QuoteNode } from '@lexical/rich-text';
+import { TableCellNode, TableNode, TableRowNode } from '@lexical/table';
+import { ListItemNode, ListNode } from '@lexical/list';
+import { CodeHighlightNode, CodeNode } from '@lexical/code';
+import { AutoLinkNode, LinkNode } from '@lexical/link';
 
 interface MyOnChangePluginProps {
   onChange?: (editorState: EditorState) => void;
@@ -47,7 +59,6 @@ interface AppProps {
   editable?: boolean;
   onChange?: (editorState: EditorState) => void;
   insertImage?: (setImage: (payload: InsertImagePayload) => void) => void;
-  insertUrl?: (setImage: (payload: InsertImagePayload) => void) => void;
 }
 
 export default function App({
@@ -61,7 +72,20 @@ export default function App({
     <LexicalComposer
       initialConfig={{
         namespace: 'React.js Demo',
-        nodes: [ImageNode],
+        nodes: [
+          HeadingNode,
+          ListNode,
+          ListItemNode,
+          QuoteNode,
+          CodeNode,
+          CodeHighlightNode,
+          TableNode,
+          TableCellNode,
+          TableRowNode,
+          AutoLinkNode,
+          LinkNode,
+          ImageNode,
+        ],
         // Handling of errors during update
         onError(error: Error) {
           throw error;
@@ -85,6 +109,12 @@ export default function App({
           <HistoryPlugin />
           {editable && <AutoFocusPlugin />}
           <ImagesPlugin />
+          <CodeHighlightPlugin />
+          <ListPlugin />
+          <LinkPlugin />
+          <AutoLinkPlugin matchers={[]} />
+          <ListMaxIndentLevelPlugin maxDepth={7} />
+          <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
           <MyOnChangePlugin onChange={onChange} />
         </div>
       </div>

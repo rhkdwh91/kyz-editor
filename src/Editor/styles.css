@@ -58,6 +58,11 @@ h1 {
 }
 
 .editor-inner {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.viewer-inner {
   background: #fff;
   position: relative;
 }

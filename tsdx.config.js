@@ -1,3 +1,4 @@
+const url = require('postcss-url');
 const postcss = require('rollup-plugin-postcss');
 const svg = require('rollup-plugin-svg');
 const replace = require('@rollup/plugin-replace');
@@ -11,7 +12,13 @@ module.exports = {
         base64: false,
       }),
       postcss({
-        plugins: [],
+        plugins: [
+          url({
+            url: 'inline',
+            maxSize: 10,
+            fallback: 'copy',
+          }),
+        ],
       }),
       replace({
         preventAssignment: true,

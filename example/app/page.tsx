@@ -8,9 +8,23 @@ function Placeholder() {
   return <div className="editor-placeholder">Enter some rich text...</div>;
 }
 
+const TextState = () => {
+  const [title, setTitle] = useState('');
+  const handleChangeText = (e: ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+  return (
+    <input
+      type="text"
+      placeholder="title"
+      value={title}
+      onChange={handleChangeText}
+    />
+  );
+};
+
 const App = () => {
   const [editorState, setEditorState] = React.useState<string>(initialState);
-  const [title, setTitle] = useState('');
   function onChange(editorState: EditorState) {
     console.log(JSON.stringify(editorState.toJSON()));
     // Call toJSON on the EditorState object, which produces a serialization safe string
@@ -18,19 +32,26 @@ const App = () => {
     // However, we still have a JavaScript object, so we need to convert it to an actual string with JSON.stringify
     setEditorState(JSON.stringify(editorStateJSON));
   }
+  const [title, setTitle] = useState('');
   const handleChangeText = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
+
   return (
-    <div>
-      <input type="text" placeholder="title" onChange={handleChangeText} />
+    <>
+      <input
+        type="text"
+        placeholder="title"
+        value={title}
+        onChange={handleChangeText}
+      />
       <Editor
         placeholder={<Placeholder />}
         onChange={onChange}
         initialEditorState={editorState}
         editable={true}
       />
-    </div>
+    </>
   );
 };
 

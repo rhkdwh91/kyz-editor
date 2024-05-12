@@ -26,7 +26,6 @@ import ImagesPlugin, {
 import CodeHighlightPlugin from '../plugins/CodeHighlightPlugin';
 import { ListPlugin } from '@lexical/react/LexicalListPlugin';
 import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
-import { AutoLinkPlugin } from '@lexical/react/LexicalAutoLinkPlugin';
 import ListMaxIndentLevelPlugin from '../plugins/ListMaxIndentLevelPlugin';
 import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPlugin';
 import { TRANSFORMERS } from '@lexical/markdown';
@@ -110,7 +109,6 @@ export default function App({
           <CodeHighlightPlugin />
           <ListPlugin />
           <LinkPlugin />
-          <AutoLinkPlugin matchers={[]} />
           <ListMaxIndentLevelPlugin maxDepth={7} />
           <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
           <MyOnChangePlugin onChange={onChange} />

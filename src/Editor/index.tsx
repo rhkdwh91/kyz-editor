@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
@@ -107,7 +106,6 @@ export default function App({
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />
-          {editable && <AutoFocusPlugin />}
           <ImagesPlugin />
           <CodeHighlightPlugin />
           <ListPlugin />

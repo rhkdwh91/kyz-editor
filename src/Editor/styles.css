@@ -742,3 +742,11 @@ i.right-align {
 i.justify-align {
   background-image: url("../images/icons/justify.svg");
 }
+
+i.font-color {
+  background-image: url("../images/icons/font-color.svg");
+}
+
+i.bg-color {
+  background-image: url("../images/icons/bg-color.svg");
+}

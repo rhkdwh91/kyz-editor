@@ -12,9 +12,15 @@ import {
   $isRangeSelection,
   $createParagraphNode,
   $getNodeByKey,
+  COMMAND_PRIORITY_CRITICAL,
 } from 'lexical';
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
-import { $wrapNodes, $isAtNodeEnd } from '@lexical/selection';
+import {
+  $getSelectionStyleValueForProperty,
+  $patchStyleText,
+  $wrapNodes,
+  $isAtNodeEnd,
+} from '@lexical/selection';
 import { $getNearestNodeOfType, mergeRegister } from '@lexical/utils';
 import {
   INSERT_ORDERED_LIST_COMMAND,
@@ -38,6 +44,7 @@ import {
 import React from 'react';
 import { InsertImagePayload } from './ImagePlugin';
 import ImageToolbar from './ImageToolbar';
+import DropdownColorPicker from '../../ui/DropdownColorPicker';
 
 const LowPriority = 1;
 
@@ -421,11 +428,15 @@ interface ToolbarProps {
 
 export default function ToolbarPlugin({ insertImage }: ToolbarProps) {
   const [editor] = useLexicalComposerContext();
+  const [activeEditor, setActiveEditor] = useState(editor);
+  const [isEditable, setIsEditable] = useState(() => editor.isEditable());
   const toolbarRef = useRef(null);
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
   const [blockType, setBlockType] = useState('paragraph');
   const [selectedElementKey, setSelectedElementKey] = useState(null);
+  const [fontColor, setFontColor] = useState<string>('#000');
+  const [bgColor, setBgColor] = useState<string>('#fff');
   const [showBlockOptionsDropDown, setShowBlockOptionsDropDown] =
     useState(false);
   const [codeLanguage, setCodeLanguage] = useState('');
@@ -468,7 +479,16 @@ export default function ToolbarPlugin({ insertImage }: ToolbarProps) {
       setIsUnderline(selection.hasFormat('underline'));
       setIsStrikethrough(selection.hasFormat('strikethrough'));
       setIsCode(selection.hasFormat('code'));
-
+      setFontColor(
+        $getSelectionStyleValueForProperty(selection, 'color', '#000')
+      );
+      setBgColor(
+        $getSelectionStyleValueForProperty(
+          selection,
+          'background-color',
+          '#fff'
+        )
+      );
       // Update links
       const node = getSelectedNode(selection);
       const parent = node.getParent();
@@ -482,6 +502,9 @@ export default function ToolbarPlugin({ insertImage }: ToolbarProps) {
 
   useEffect(() => {
     return mergeRegister(
+      editor.registerEditableListener((editable) => {
+        setIsEditable(editable);
+      }),
       editor.registerUpdateListener(({ editorState }) => {
         editorState.read(() => {
           updateToolbar();
@@ -537,8 +560,47 @@ export default function ToolbarPlugin({ insertImage }: ToolbarProps) {
     }
   }, [editor, isLink]);
 
-  // @ts-ignore
-  // @ts-ignore
+  useEffect(() => {
+    return editor.registerCommand(
+      SELECTION_CHANGE_COMMAND,
+      (_payload, newEditor) => {
+        updateToolbar();
+        setActiveEditor(newEditor);
+        return false;
+      },
+      COMMAND_PRIORITY_CRITICAL
+    );
+  }, [editor, updateToolbar]);
+
+  const applyStyleText = useCallback(
+    (styles: Record<string, string>, skipHistoryStack?: boolean) => {
+      activeEditor.update(
+        () => {
+          const selection = $getSelection();
+          if (selection !== null) {
+            $patchStyleText(selection, styles);
+          }
+        },
+        skipHistoryStack ? { tag: 'historic' } : {}
+      );
+    },
+    [activeEditor]
+  );
+
+  const onFontColorSelect = useCallback(
+    (value: string, skipHistoryStack: boolean) => {
+      applyStyleText({ color: value }, skipHistoryStack);
+    },
+    [applyStyleText]
+  );
+
+  const onBgColorSelect = useCallback(
+    (value: string, skipHistoryStack: boolean) => {
+      applyStyleText({ 'background-color': value }, skipHistoryStack);
+    },
+    [applyStyleText]
+  );
+
   return (
     <div className="toolbar" ref={toolbarRef}>
       <button
@@ -697,7 +759,25 @@ export default function ToolbarPlugin({ insertImage }: ToolbarProps) {
             aria-label="Justify Align"
           >
             <i className="format justify-align" />
-          </button>{' '}
+          </button>
+          <DropdownColorPicker
+            disabled={!isEditable}
+            buttonClassName="toolbar-item color-picker"
+            buttonAriaLabel="Formatting text color"
+            buttonIconClassName="icon font-color"
+            color={fontColor}
+            onChange={onFontColorSelect}
+            title="text color"
+          />
+          <DropdownColorPicker
+            disabled={!isEditable}
+            buttonClassName="toolbar-item color-picker"
+            buttonAriaLabel="Formatting background color"
+            buttonIconClassName="icon bg-color"
+            color={bgColor}
+            onChange={onBgColorSelect}
+            title="bg color"
+          />
           <ImageToolbar insertImage={insertImage} />
           <Divider />
         </>

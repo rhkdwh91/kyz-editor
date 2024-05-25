@@ -247,15 +247,22 @@ h1 {
   margin-left: 16px;
 }
 
+.editor-list-ol li {
+  list-style: number;
+}
+
 .editor-list-ul {
   padding: 0;
   margin: 0;
   margin-left: 16px;
 }
 
+.editor-list-ul li {
+  list-style: disc;
+}
+
 .editor-listitem {
   margin: 8px 32px 8px 32px;
-  list-style: unset;
 }
 
 .editor-nested-listitem {

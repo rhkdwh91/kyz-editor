@@ -41,10 +41,12 @@ import {
   getDefaultCodeLanguage,
   getCodeLanguages,
 } from '@lexical/code';
+import { $isTableSelection } from '@lexical/table';
 import React from 'react';
 import { InsertImagePayload } from './ImagePlugin';
 import ImageToolbar from './ImageToolbar';
 import DropdownColorPicker from '../../ui/DropdownColorPicker';
+import FontSize from './FontSize';
 
 const LowPriority = 1;
 
@@ -435,6 +437,7 @@ export default function ToolbarPlugin({ insertImage }: ToolbarProps) {
   const [canRedo, setCanRedo] = useState(false);
   const [blockType, setBlockType] = useState('paragraph');
   const [selectedElementKey, setSelectedElementKey] = useState(null);
+  const [fontSize, setFontSize] = useState<string>('15px');
   const [fontColor, setFontColor] = useState<string>('#000');
   const [bgColor, setBgColor] = useState<string>('#fff');
   const [showBlockOptionsDropDown, setShowBlockOptionsDropDown] =
@@ -496,6 +499,11 @@ export default function ToolbarPlugin({ insertImage }: ToolbarProps) {
         setIsLink(true);
       } else {
         setIsLink(false);
+      }
+      if ($isRangeSelection(selection) || $isTableSelection(selection)) {
+        setFontSize(
+          $getSelectionStyleValueForProperty(selection, 'font-size', '15px')
+        );
       }
     }
   }, [editor]);
@@ -667,6 +675,12 @@ export default function ToolbarPlugin({ insertImage }: ToolbarProps) {
         </>
       ) : (
         <>
+          <FontSize
+            selectionFontSize={fontSize.slice(0, -2)}
+            editor={activeEditor}
+            disabled={!isEditable}
+          />
+          <Divider />
           <button
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');

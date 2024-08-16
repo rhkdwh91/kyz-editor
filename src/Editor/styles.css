@@ -40,7 +40,7 @@ h1 {
   max-width: 600px;
   color: #000;
   position: relative;
-  line-height: 20px;
+  line-height: 1.2;
   font-weight: 400;
   text-align: left;
   border-top-left-radius: 10px;
@@ -428,7 +428,7 @@ pre::-webkit-scrollbar-thumb {
 
 .toolbar .toolbar-item .text {
   display: flex;
-  line-height: 20px;
+  line-height: 1.2;
   vertical-align: middle;
   font-size: 14px;
   color: #777;
@@ -445,7 +445,7 @@ pre::-webkit-scrollbar-thumb {
   height: 20px;
   user-select: none;
   margin-right: 8px;
-  line-height: 16px;
+  line-height: 1.2;
   background-size: contain;
 }
 
@@ -537,7 +537,7 @@ i.chevron-down {
   padding: 8px;
   color: #050505;
   cursor: pointer;
-  line-height: 16px;
+  line-height: 1.2;
   font-size: 15px;
   display: flex;
   align-content: center;
@@ -571,7 +571,7 @@ i.chevron-down {
 
 .dropdown .item .text {
   display: flex;
-  line-height: 20px;
+  line-height: 1.2;
   flex-grow: 1;
   width: 200px;
 }
@@ -582,7 +582,7 @@ i.chevron-down {
   height: 20px;
   user-select: none;
   margin-right: 12px;
-  line-height: 16px;
+  line-height: 1.2;
   background-size: contain;
 }
 

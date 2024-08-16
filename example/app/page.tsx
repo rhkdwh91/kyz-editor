@@ -2,7 +2,7 @@
 
 import React, { ChangeEvent, useState } from 'react';
 
-import { Editor, initialState, EditorState } from '../../src';
+import { Editor, initialState, EditorState } from '../../dist';
 
 function Placeholder() {
   return <div className="editor-placeholder">Enter some rich text...</div>;

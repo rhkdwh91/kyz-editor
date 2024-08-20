@@ -3,13 +3,27 @@
   "version": "0.4.1",
   "license": "MIT",
   "files": [
-    "build/dist"
+    "dist"
   ],
+  "main": "dist/kyz-editor.mjs",
+  "module": "dist/kyz-editor.mjs",
   "exports": {
     ".": {
-      "import": "./src/index.tsx"
+      "import": "./dist/dist/kyz-editor.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhkdwh91/kyz-editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rhkdwh91/kyz-editor/issues"
+  },
+  "homepage": "https://github.com/rhkdwh91/kyz-editor#readme",
+  "author": "Kwangyeon.Cho",
+  "description": "",
   "scripts": {
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -24,8 +38,6 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "author": "MacKwangyeon",
-  "module": "dist/kyz-editor.esm.js",
   "size-limit": [
     {
       "path": "dist/kyz-editor.cjs.production.min.js",

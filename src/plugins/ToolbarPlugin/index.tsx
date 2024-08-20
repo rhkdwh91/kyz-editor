@@ -42,7 +42,6 @@ import {
   getCodeLanguages,
 } from '@lexical/code';
 import { $isTableSelection } from '@lexical/table';
-import React from 'react';
 import { InsertImagePayload } from './ImagePlugin';
 import ImageToolbar from './ImageToolbar';
 import DropdownColorPicker from '../../ui/DropdownColorPicker';

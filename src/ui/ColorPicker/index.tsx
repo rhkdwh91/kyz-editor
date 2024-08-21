@@ -329,9 +329,9 @@ function hsv2rgb({ h, s, v }: HSV): RGB {
   const t = v * (1 - s * (1 - f));
   const index = i % 6;
 
-  const r = Math.round([v, q, p, p, t, v][index] * 255);
-  const g = Math.round([t, v, v, q, p, p][index] * 255);
-  const b = Math.round([p, p, t, v, v, q][index] * 255);
+  const r = Math.round(([v, q, p, p, t, v] as any)[index] * 255);
+  const g = Math.round(([t, v, v, q, p, p] as any)[index] * 255);
+  const b = Math.round(([p, p, t, v, v, q] as any)[index] * 255);
 
   return { b, g, r };
 }

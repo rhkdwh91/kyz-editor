@@ -291,9 +291,9 @@ function hex2rgb(hex: string): RGB {
   ).map((x) => parseInt(x, 16));
 
   return {
-    b: rbgArr[2],
-    g: rbgArr[1],
-    r: rbgArr[0],
+    b: rbgArr[2] ?? 0,
+    g: rbgArr[1] ?? 0,
+    r: rbgArr[0] ?? 0,
   };
 }
 

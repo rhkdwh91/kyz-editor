@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     outDir: 'build/dist/',
     lib: {
-      entry: 'src/index.ts',
+      entry: 'src/index.tsx',
       name: 'kyz-editor',
     },
     rollupOptions: {
